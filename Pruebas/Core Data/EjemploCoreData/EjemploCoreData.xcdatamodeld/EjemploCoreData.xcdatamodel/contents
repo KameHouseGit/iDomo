@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Casa" representedClassName="Casa" syncable="YES">
+        <attribute name="nombre" attributeType="String" syncable="YES"/>
+        <relationship name="estancias" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Estancia" inverseName="casa" inverseEntity="Estancia" syncable="YES"/>
+        <relationship name="interfaces" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Interfaz" inverseName="casa" inverseEntity="Interfaz" syncable="YES"/>
+    </entity>
+    <entity name="Dispositivo" representedClassName="Dispositivo" syncable="YES">
+        <attribute name="cod_casa" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cod_dispositivo" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="estancia" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Estancia" inverseName="dispositivos" inverseEntity="Estancia" syncable="YES"/>
+        <relationship name="interfaz" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Interfaz" inverseName="dispositivos" inverseEntity="Interfaz" syncable="YES"/>
+        <relationship name="tipo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tipo" inverseName="dispositivos" inverseEntity="Tipo" syncable="YES"/>
+    </entity>
+    <entity name="Estancia" representedClassName="Estancia" syncable="YES">
+        <attribute name="nombre" attributeType="String" syncable="YES"/>
+        <relationship name="casa" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Casa" inverseName="estancias" inverseEntity="Casa" syncable="YES"/>
+        <relationship name="dispositivos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Dispositivo" inverseName="estancia" inverseEntity="Dispositivo" syncable="YES"/>
+    </entity>
+    <entity name="Interfaz" representedClassName="Interfaz" syncable="YES">
+        <attribute name="nombre" attributeType="String" syncable="YES"/>
+        <relationship name="casa" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Casa" inverseName="interfaces" inverseEntity="Casa" syncable="YES"/>
+        <relationship name="dispositivos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Dispositivo" inverseName="interfaz" inverseEntity="Dispositivo" syncable="YES"/>
+    </entity>
+    <entity name="Tipo" representedClassName="Tipo" syncable="YES">
+        <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="dispositivos" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Dispositivo" inverseName="tipo" inverseEntity="Dispositivo" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Casa" positionX="108" positionY="-81" width="128" height="88"/>
+        <element name="Dispositivo" positionX="-315" positionY="-36" width="128" height="133"/>
+        <element name="Estancia" positionX="-126" positionY="-81" width="153" height="88"/>
+        <element name="Tipo" positionX="-74" positionY="99" width="128" height="73"/>
+        <element name="Interfaz" positionX="313" positionY="-9" width="128" height="88"/>
+    </elements>
+</model>
